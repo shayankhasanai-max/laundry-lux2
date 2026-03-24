@@ -26,7 +26,7 @@ header{
 position:fixed;
 top:0;
 width:100%;
-height: 65px;
+height:65px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -73,9 +73,7 @@ align-items:center;
 text-align:center;
 color:white;
 }
-#pluto{
-  font-size: 55px;
-}
+#pluto{font-size:55px;}
 .hero h1{font-size:60px;}
 .hero p{font-size:20px;margin-top:10px;}
 
@@ -97,7 +95,6 @@ cursor:pointer;
 
 /* SECTION */
 section{padding:100px 20px;}
-
 .section-title{
 text-align:center;
 font-size:34px;
@@ -140,6 +137,43 @@ color:white;
 transform:translateY(-10px);
 }
 
+/* SMALL IMAGE */
+.price-image-box{
+max-width:500px;   /* controls size */
+margin:auto;
+cursor:pointer;
+}
+
+.price-image-box img{
+width:100%;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+transition:0.3s;
+}
+
+.price-image-box img:hover{
+transform:scale(1.05);
+}
+
+/* FULLSCREEN MODAL */
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+
+.modal img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+}
 /* FORM */
 .form-section{
 background:linear-gradient(135deg,var(--blue),var(--blue-dark));
@@ -162,8 +196,9 @@ font-size:15px;
 }
 
 .submit-btn{
-background:black;
-color:white;
+background:aquamarine;
+color:black;
+font-size:15px;
 padding:14px;
 border:none;
 border-radius:10px;
@@ -173,29 +208,33 @@ cursor:pointer;
 /* GALLERY */
 .gallery{
 display:grid;
-grid-template-columns:repeat(1,1fr);
+grid-template-columns:repeat(2,1fr);
 gap:10px;
 }
 .gallery img{
 width:100%;
-height:100%;
+height:200px;
+border:5px solid #38bdf8;
 object-fit:cover;
 border-radius:10px;
 }
 
 /* CONTACT */
 .contact{
-background:var(--blue);
-color:white;
+background:#fff;
+color:#000;
 padding:30px;
 border-radius:15px;
 text-align:center;
 }
-
+#pen{
+border: 7px solid #38bdf8;
+border-radius:10px;
+}
 iframe{
 width:100%;
 height:250px;
-border:none;
+border:7px solid #38bdf8;
 border-radius:10px;
 margin-top:15px;
 }
@@ -246,6 +285,16 @@ transition:0.3s;
 nav.active{transform:translateX(0);}
 nav a{margin:0;}
 }
+
+/* EXTRA MOBILE */
+@media(max-width:600px){
+.price-table th,
+.price-table td{
+padding:8px;
+font-size:12px;
+}
+.note{font-size:13px;}
+}
 </style>
 </head>
 
@@ -263,6 +312,7 @@ Laundry Lux
 <a href="#home">Home</a>
 <a href="#about">About</a>
 <a href="#services">Services</a>
+<a href="#pricing">Pricing</a>
 <a href="#booking">Book</a>
 <a href="#contact">Contact</a>
 </nav>
@@ -297,6 +347,20 @@ Laundry Lux
 </div>
 </section>
 
+<section id="pricing">
+<h2 class="section-title">Price List</h2>
+
+<div class="price-image-box">
+  <img src="price.jpeg" alt="Price List" onclick="openImage()">
+</div>
+
+<!-- FULLSCREEN VIEW -->
+<div id="imageModal" class="modal" onclick="closeImage()">
+  <img id="modalImg">
+</div>
+
+</section>
+
 <!-- BOOKING -->
 <section id="booking">
 <h2 class="section-title">Book Pickup</h2>
@@ -313,7 +377,7 @@ Laundry Lux
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
 <input type="date" id="date" required>
-<input type="time" id="time" placeholder="Pickup Time" required>
+<input type="time" id="time" required>
 </div>
 
 <select id="service">
@@ -326,7 +390,7 @@ Laundry Lux
 <option>Curtains, Bags, Carpets</option> 
 </select>
 
-<input type="url" id="location" placeholder="Google Maps Location Link (optional)">
+<input type="url" id="location" placeholder="Google Maps Location Link">
 <textarea id="note" placeholder="Additional Details"></textarea>
 
 <button class="submit-btn">Confirm Pickup</button>
@@ -342,19 +406,22 @@ Laundry Lux
 <img src="img1.jpeg">
 <img src="img2.jpeg">
 <img src="img4.jpeg">
+<img src="img5.jpeg">
+<img src="img3.jpeg">
+<img src="img6.jpeg">
 </div>
 </section>
 
-<!-- CONTACT US-->
+<!-- CONTACT -->
 <section id="contact">
 <h2 class="section-title">Contact</h2>
 <div class="block contact">
+  <div id="pen">
 <p>📞 +91 8129xxxxxx</p>
 <p>📧 laundrylux4@gmail.com</p>
-<p>🅾 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦 laundrylux__</p>
 <p>📍 Kolathur</p>
-
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.278888748796!2d76.14249671032172!3d10.94229315606795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7cbc02f43f51b%3A0x74fda7900d0c03f2!2sLaundry%20Lux%20-%20Expert%20Fabric%20Care!5e0!3m2!1sen!2sin!4v1774280212725!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.2789583671774!2d76.14250207480742!3d10.942287889216797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7cbc02f43f51b%3A0x74fda7900d0c03f2!2sLaundry%20Lux%20-%20Expert%20Fabric%20Care!5e0!3m2!1sen!2sin!4v1774328803602!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 </section>
 
@@ -366,24 +433,26 @@ Laundry Lux
 </div>
 
 <script>
+/* MOBILE MENU */
 function toggleMenu(){
-document.getElementById("navMenu").classList.toggle("active");
+  document.getElementById("navMenu").classList.toggle("active");
 }
 
+/* WHATSAPP BOOKING */
 function sendWhatsApp(e){
-e.preventDefault();
+  e.preventDefault();
 
-let name=document.getElementById('name').value;
-let phone=document.getElementById('phone').value;
-let address=document.getElementById('address').value;
-let location=document.getElementById('location').value;
-let date=document.getElementById('date').value;
-let time=document.getElementById('time').value;
-let pickup = date + " at " + time;
-let service=document.getElementById('service').value;
-let note=document.getElementById('note').value;
+  let name = document.getElementById('name').value;
+  let phone = document.getElementById('phone').value;
+  let address = document.getElementById('address').value;
+  let location = document.getElementById('location').value;
+  let date = document.getElementById('date').value;
+  let time = document.getElementById('time').value;
+  let pickup = date + " at " + time;
+  let service = document.getElementById('service').value;
+  let note = document.getElementById('note').value;
 
-let msg=`New Booking:%0A
+  let msg = `New Booking:%0A
 Name: ${name}%0A
 Phone: ${phone}%0A
 Pickup: ${pickup}%0A
@@ -392,9 +461,21 @@ Location: ${location}%0A
 Service: ${service}%0A
 Note: ${note}`;
 
-window.open(`https://wa.me/918129xxxxxx?text=${msg}`,"_blank");
+  window.open(`https://wa.me/918129xxxxxx?text=${msg}`, "_blank");
 
-alert("✅ Booking sent successfully!");
+  alert("✅ Booking sent successfully!");
+}
+
+/* IMAGE ZOOM (PRICING) */
+function openImage(){
+  let modal = document.getElementById("imageModal");
+  let img = document.getElementById("modalImg");
+  img.src = "price.jpeg"; // your image name
+  modal.style.display = "flex";
+}
+
+function closeImage(){
+  document.getElementById("imageModal").style.display = "none";
 }
 </script>
 
